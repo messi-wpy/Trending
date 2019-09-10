@@ -5,4 +5,15 @@
     <color name="colorAccent">#D81B60</color>
     <color name="toobarTextColor">#25282B</color>
     <color name="divider">#e8e8e8</color>
+
+    <color name="colorTextTitle">#4a4a4a</color>
+    <color name="colorTextTitleDarker">#25282b</color>
+    <color name="colorTextContent">#52575c</color>
+    <color name="colorTextContentSecondary">#929292</color>
+
+    <color name="grey">#ddd</color>
+    <color name="grey_dark">#a9a9a9</color>
+    <color name="language_icon_bg">#ed646a</color>
+    <color name="item_press_bg">#f5f5f5</color>
+
 </resources>
