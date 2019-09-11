@@ -1,4 +1,4 @@
-package com.example.trending;
+package com.example.trending.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements TrendingContract.View{
+import com.example.trending.R;
+import com.example.trending.TrendingContract;
+
+public class MainActivity extends AppCompatActivity implements TrendingContract.View {
 
     private Toolbar mToolbar;
     private TrendingAdapter adapter;
