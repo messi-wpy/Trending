@@ -24,15 +24,6 @@
         </activity>
 
 
-        <receiver android:name=".MyReceiver">
-            <intent-filter>
-                <!--注册开机广播地址-->
-                <action android:name="android.intent.action.BOOT_COMPLETED">
-                </action>
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

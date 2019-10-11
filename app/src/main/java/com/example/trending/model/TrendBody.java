@@ -1,9 +1,14 @@
 package com.example.trending.model;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.List;
 
 import okhttp3.OkHttpClient;
 
+@Entity(tableName = "trend_table")
 public class TrendBody {
 
     /**
@@ -20,6 +25,9 @@ public class TrendBody {
      * languageColor : #3572A5
      */
 
+    @PrimaryKey(autoGenerate = true)
+    public int uid;
+
     private String author;
     private String name;
     private String avatar;
@@ -30,6 +38,8 @@ public class TrendBody {
     private int currentPeriodStars;
     private String language;
     private String languageColor;
+
+    @Ignore
     private List<BuiltByBean> builtBy;
 
     public String getAuthor() {
