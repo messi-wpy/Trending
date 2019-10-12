@@ -16,7 +16,8 @@ public abstract class MyRoomDatabase extends RoomDatabase {
         if (SINGLE==null){
             synchronized (MyRoomDatabase.class){
                 if (SINGLE==null){
-                    SINGLE= Room.databaseBuilder(context.getApplicationContext(),MyRoomDatabase.class,"Trendbs").build();
+                    SINGLE= Room.databaseBuilder(context.getApplicationContext(),MyRoomDatabase.class,"Trendbs")
+                            .build();
                 }
 
             }

@@ -10,7 +10,7 @@ import io.reactivex.functions.Consumer;
 public class RemoteSource  {
 
     public Observable<List<TrendBody>> getTrendings(){
-        return RetrofitFactory.getService().getTrend();
+        return RetrofitFactory.getService().getTrend() ;
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.trending.model.localRepository;
 
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -16,5 +17,8 @@ public interface TrendDao {
 
     @Insert
     Maybe<List<Long>>saveTrends(List<TrendBody>list);
+
+    @Query("delete from trend_table")
+    void deleteAll();
 
 }

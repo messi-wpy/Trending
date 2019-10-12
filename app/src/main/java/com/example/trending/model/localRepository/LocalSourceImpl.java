@@ -22,6 +22,7 @@ public class LocalSourceImpl implements LocalSource{
 
     @Override
     public Maybe<List<Long>> saveTrends(List<TrendBody> list) {
+        new Thread(()-> database.getTrendDao().deleteAll()).start();
         return database.getTrendDao().saveTrends(list);
     }
 }
