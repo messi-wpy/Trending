@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+import io.reactivex.Scheduler;
+
 public class App  extends Application {
 
     private  static Context mContext;

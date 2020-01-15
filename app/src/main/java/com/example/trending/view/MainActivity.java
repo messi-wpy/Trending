@@ -16,6 +16,11 @@ import android.widget.Toast;
 
 import com.example.trending.R;
 import com.example.trending.TrendingContract;
+import com.example.trending.model.TrendBody;
+import com.example.trending.presenter.TrendingPresenter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TrendingContract.View {
 
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
     private Toolbar mToolbar;
     private TrendingAdapter adapter;
     private RecyclerView recyclerView;
+    private TrendingPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +38,14 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("");
         recyclerView=findViewById(R.id.recyclerView);
-        adapter=new TrendingAdapter();
+        adapter=new TrendingAdapter(new ArrayList<>());
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
 
+        presenter=new TrendingPresenter(this);
+        presenter.loadTrending();
     }
 
 
@@ -48,9 +56,10 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
     }
 
     @Override
-    public void showTrending() {
-
+    public void showTrending(List<TrendBody> list) {
+        adapter.addAll(list);
     }
+
 
     @Override
     public void showTrendingDetails() {
@@ -59,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
 
     @Override
     public void showErrorView() {
+
+    }
+
+    @Override
+    public void showEmptyView() {
 
     }
 
