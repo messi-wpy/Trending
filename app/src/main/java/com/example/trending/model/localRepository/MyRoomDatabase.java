@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.trending.model.TrendBody;
 
-@Database(entities = {TrendBody.class},version = 1)
+@Database(entities = {TrendBody.class},version = 1,exportSchema = false)
 public abstract class MyRoomDatabase extends RoomDatabase {
     public abstract TrendDao getTrendDao();
     private static MyRoomDatabase SINGLE;

@@ -19,7 +19,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
 
     private List<TrendBody>list;
     public TrendingAdapter(List<TrendBody>list){
-        list=list;
+        this.list=list;
     }
 
     public void setList(List<TrendBody>newlist){

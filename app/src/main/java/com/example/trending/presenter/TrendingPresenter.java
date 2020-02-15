@@ -1,5 +1,7 @@
 package com.example.trending.presenter;
 
+import android.util.Log;
+
 import com.example.trending.TrendingContract;
 import com.example.trending.model.DataSource;
 import com.example.trending.model.TrendBody;
@@ -37,10 +39,11 @@ public class TrendingPresenter implements TrendingContract.Presenter {
         view.showLoadingView();
         Disposable d= dataSource.getTrends(false)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .onErrorResumeNext(throwable -> {
+                    Log.i("presenter", "loadTrending: ");
                     return dataSource.getFromLocal();
                 })
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         list -> {
                             if (list.size() == 0) {
@@ -48,6 +51,7 @@ public class TrendingPresenter implements TrendingContract.Presenter {
                                 return;
                             }
                             view.showTrending(list);
+                            dataSource.savetoCache(list);
                             dataSource.savetoLocal(list);
                         }
 
