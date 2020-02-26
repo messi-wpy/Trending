@@ -27,7 +27,6 @@ public class TrendBody {
 
     @PrimaryKey(autoGenerate = true)
     public int uid;
-
     private String author;
     private String name;
     private String avatar;
@@ -41,6 +40,8 @@ public class TrendBody {
 
     @Ignore
     private List<BuiltByBean> builtBy;
+    @Ignore
+    private boolean IsExpand=false;
 
     public String getAuthor() {
         return author;
@@ -128,6 +129,14 @@ public class TrendBody {
 
     public void setBuiltBy(List<BuiltByBean> builtBy) {
         this.builtBy = builtBy;
+    }
+
+    public boolean isExpand() {
+        return IsExpand;
+    }
+
+    public void setExpand(boolean expand) {
+        IsExpand = expand;
     }
 
     public static class BuiltByBean {

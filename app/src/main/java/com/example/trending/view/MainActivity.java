@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,9 +44,9 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-
         presenter=new TrendingPresenter(this);
         presenter.loadTrending();
+
     }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#e8e8e8</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#fff</color>
+    <color name="colorPrimaryDark">#fefefe</color>
     <color name="colorAccent">#D81B60</color>
     <color name="toobarTextColor">#25282B</color>
     <color name="divider">#e8e8e8</color>
@@ -15,5 +15,8 @@
     <color name="grey_dark">#a9a9a9</color>
     <color name="language_icon_bg">#ed646a</color>
     <color name="item_press_bg">#f5f5f5</color>
+
+
+    <color name="lang_color">#FFC107</color>
 
 </resources>
