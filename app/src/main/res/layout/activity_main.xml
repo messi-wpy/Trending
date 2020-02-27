@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.trending.ViewModel.TrendingViewModel" />
+
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,28 +37,41 @@
             android:layout_gravity="center"
             android:text="@string/app_name"
             android:textColor="@color/toobarTextColor"
-            android:textSize="21sp" />
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <View
-        android:id="@+id/trending_page_toolbar_bottom_border"
+        android:id="@+id/toolbar_bottom_border"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/divider"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/refresh_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/refresh_view"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:onRefreshListener="@{viewModel::onRefresh}"
+    app:refreshing="@{viewModel.dataLoading}"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar_bottom_border">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trending_page_toolbar_bottom_border" />
+         />
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

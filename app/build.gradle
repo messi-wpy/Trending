@@ -21,6 +21,10 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 
@@ -50,6 +54,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
 
+    implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
+    annotationProcessor("androidx.lifecycle:lifecycle-compiler:2.0.0")
 
 
 }

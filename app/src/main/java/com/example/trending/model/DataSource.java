@@ -14,6 +14,7 @@ import io.reactivex.MaybeObserver;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
 public class DataSource {
@@ -22,60 +23,35 @@ public class DataSource {
     private LocalSource local;
 
     private final String TAG="DataSource";
-    private List<TrendBody>cacheTrend;
-    private long lastUpdateTime= 0L;
 
     public DataSource(){
         remote=new RemoteSource();
         local=new LocalSourceImpl();
     }
 
-    public boolean isDirty(){
-        long now=System.currentTimeMillis();
-        return now-lastUpdateTime<=7200*1000;
 
-    }
-    public boolean hasCache(){
-        if (cacheTrend==null)
-            return false;
-        else
-            return true;
-    }
+
 
 
     public Observable<List<TrendBody>>getTrends(boolean forceUpdate){
-        if (isDirty()||!hasCache()||forceUpdate){
-            lastUpdateTime=System.currentTimeMillis();
-            return remote.getTrendings();
-        }else
-            return Observable.create(emitter -> {
-                emitter.onNext(cacheTrend);
-            });
+        if (forceUpdate){
+            return getTrendsFromeRemote();
+        }
+        return remote.getTrendings()
+                .onErrorResumeNext(throwable -> {
+                        return getFromLocal();
+                })
+                .subscribeOn(Schedulers.io());
+
     }
 
-    public void savetoCache(List<TrendBody>list){
-        cacheTrend=list;
+    public Observable<List<TrendBody>>getTrendsFromeRemote(){
+        return remote.getTrendings();
+
     }
     public void savetoLocal(List<TrendBody>list){
 
-        local.saveTrends(list)
-                .subscribeOn(Schedulers.io())
-                .subscribe(new CompletableObserver() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.i(TAG, "onComplete: ");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-                });
+        local.saveTrends(list).subscribe();
     }
 
     public Observable<List<TrendBody>> getFromLocal(){

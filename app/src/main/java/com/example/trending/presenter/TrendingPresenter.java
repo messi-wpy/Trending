@@ -51,7 +51,6 @@ public class TrendingPresenter implements TrendingContract.Presenter {
                                 return;
                             }
                             view.showTrending(list);
-                            dataSource.savetoCache(list);
                             dataSource.savetoLocal(list);
                         }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.trending.R;
 import com.example.trending.TrendingContract;
+import com.example.trending.ViewModel.TrendingViewModel;
+import com.example.trending.databinding.ActivityMainBinding;
 import com.example.trending.model.TrendBody;
 import com.example.trending.presenter.TrendingPresenter;
 
@@ -31,18 +34,27 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
     private TrendingAdapter adapter;
     private RecyclerView recyclerView;
     private TrendingPresenter presenter;
+
+    private TrendingViewModel mTrendingViewModel;
+    private TrendingAdapter mAdapter;
+    private ActivityMainBinding mViewBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         mToolbar=findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("");
+
         recyclerView=findViewById(R.id.recyclerView);
-        adapter=new TrendingAdapter(new ArrayList<>());
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+
+
+
+
+
 
         presenter=new TrendingPresenter(this);
         presenter.loadTrending();
