@@ -21,16 +21,20 @@ public class TrendingViewModel extends ViewModel {
 
 
     private MutableLiveData<List<TrendBody>> mTrendingLiveData=new MutableLiveData<>();
-    private MutableLiveData<Integer>clickMark=new MutableLiveData<>();
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
     private DataSource mDataSource;
     private AtomicBoolean hasInited=new AtomicBoolean(false);
-    public TrendingViewModel(DataSource dataSource){
-        mDataSource=dataSource;
-    }
     private MutableLiveData<Boolean> mDataLoading = new MutableLiveData<>();
     private MutableLiveData<Boolean> mErrorState = new MutableLiveData<>();
+
+
+    public TrendingViewModel(DataSource dataSource){
+        mDataSource=dataSource;
+
+    }
+
+
 
     public void initData(){
         //防止重新加载
@@ -40,7 +44,6 @@ public class TrendingViewModel extends ViewModel {
             hasInited.set(true);
         }
 
-        clickMark.setValue(-1);
         mDataLoading.setValue(false);
         mErrorState.setValue(false);
 
@@ -53,7 +56,6 @@ public class TrendingViewModel extends ViewModel {
     public void fetch(boolean forceUpdate){
         mDataLoading.setValue(true);
         mTrendingLiveData.setValue(new ArrayList<>());
-        clickMark.setValue(-1);
         mDataSource.getTrendsFromeRemote()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<TrendBody>>() {
@@ -89,6 +91,10 @@ public class TrendingViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getErrorState() {
         return mErrorState;
+    }
+
+    public MutableLiveData<List<TrendBody>>getmTrendingLiveData(){
+        return mTrendingLiveData;
     }
     @Override
     protected void onCleared() {

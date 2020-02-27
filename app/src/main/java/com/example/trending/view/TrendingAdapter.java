@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trending.R;
+import com.example.trending.ViewModel.TrendingViewModel;
 import com.example.trending.model.TrendBody;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -19,9 +20,12 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
 
 
     private List<TrendBody>list;
-    public TrendingAdapter(List<TrendBody>list){
-        this.list=list;
+
+    private TrendingViewModel mViewModel;
+    public TrendingAdapter(TrendingViewModel viewModel){
+        mViewModel=viewModel;
     }
+
 
     public void setList(List<TrendBody>newlist){
         list=newlist;

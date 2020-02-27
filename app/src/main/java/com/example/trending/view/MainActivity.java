@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.trending.R;
 import com.example.trending.TrendingContract;
 import com.example.trending.ViewModel.TrendingViewModel;
+import com.example.trending.ViewModel.TrendingViewModelFactory;
 import com.example.trending.databinding.ActivityMainBinding;
 import com.example.trending.model.TrendBody;
 import com.example.trending.presenter.TrendingPresenter;
@@ -38,11 +40,33 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
     private TrendingViewModel mTrendingViewModel;
     private TrendingAdapter mAdapter;
     private ActivityMainBinding mViewBinding;
+    TrendingViewModelFactory mViewModelFactory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mTrendingViewModel=ViewModelProviders.of(this,mViewModelFactory).get(TrendingViewModel.class);
+        mViewBinding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+        mViewBinding.setViewModel(mTrendingViewModel);
+        mViewBinding.setLifecycleOwner(this);
+        mTrendingViewModel.initData();
+
+
+        mToolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        setupView();
+
+        mTrendingViewModel.getmTrendingLiveData()
+                .observe(this,list -> {
+                    mAdapter.setList(list);
+                });
+
+    }
+
+    public void setupView(){
 
         mToolbar=findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -50,17 +74,11 @@ public class MainActivity extends AppCompatActivity implements TrendingContract.
         recyclerView=findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        mAdapter=new TrendingAdapter(mTrendingViewModel);
+        recyclerView.setAdapter(mAdapter);
 
-
-
-
-
-
-        presenter=new TrendingPresenter(this);
-        presenter.loadTrending();
 
     }
-
 
 
     @Override
