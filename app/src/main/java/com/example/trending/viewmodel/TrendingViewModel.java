@@ -46,7 +46,7 @@ public class TrendingViewModel extends ViewModel {
 
         mDataLoading.setValue(false);
         mErrorState.setValue(false);
-
+        fetch(false);
     }
 
     public void onRefresh(){
@@ -56,7 +56,7 @@ public class TrendingViewModel extends ViewModel {
     public void fetch(boolean forceUpdate){
         mDataLoading.setValue(true);
         mTrendingLiveData.setValue(new ArrayList<>());
-        mDataSource.getTrendsFromeRemote()
+        mDataSource.getTrends(forceUpdate)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<TrendBody>>() {
                     @Override

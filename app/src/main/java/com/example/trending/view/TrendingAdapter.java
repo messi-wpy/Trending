@@ -88,7 +88,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return list==null?0:list.size();
     }
 
     class TrendingHolder extends RecyclerView.ViewHolder{

@@ -9,6 +9,8 @@ import com.example.trending.model.remoteRepository.RemoteSource;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.CompletableObserver;
 import io.reactivex.MaybeObserver;
 import io.reactivex.Observable;
@@ -24,12 +26,14 @@ public class DataSource {
 
     private final String TAG="DataSource";
 
-    public DataSource(){
-        remote=new RemoteSource();
-        local=new LocalSourceImpl();
+
+
+    @Inject
+    public DataSource(RemoteSource remote,LocalSource local){
+        this.remote=remote;
+        this.local=local;
+
     }
-
-
 
 
 

@@ -1,5 +1,7 @@
 package com.example.trending.model.localRepository;
 
+import android.content.Context;
+
 import com.example.trending.App;
 import com.example.trending.model.TrendBody;
 
@@ -16,8 +18,8 @@ import io.reactivex.functions.Function;
 public class LocalSourceImpl implements LocalSource{
 
     private MyRoomDatabase database;
-    public LocalSourceImpl(){
-        database=MyRoomDatabase.getInstance(App.getContext());
+    public LocalSourceImpl(Context context){
+        database=MyRoomDatabase.getInstance(context);
     }
 
 

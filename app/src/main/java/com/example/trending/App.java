@@ -3,6 +3,8 @@ package com.example.trending;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.trending.DI.AppComponent;
+import com.example.trending.DI.DaggerAppComponent;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import dagger.android.AndroidInjector;
@@ -21,7 +23,7 @@ public class App  extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return
+        return DaggerAppComponent.builder().application(this).build();
     }
 
     public static Context getContext(){
