@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trending.R;
-import com.example.trending.ViewModel.TrendingViewModel;
+import com.example.trending.viewmodel.TrendingViewModel;
 import com.example.trending.model.TrendBody;
 import com.facebook.drawee.view.SimpleDraweeView;
 

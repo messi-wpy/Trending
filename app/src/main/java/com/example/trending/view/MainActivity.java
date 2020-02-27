@@ -19,8 +19,8 @@ import android.widget.Toast;
 
 import com.example.trending.R;
 import com.example.trending.TrendingContract;
-import com.example.trending.ViewModel.TrendingViewModel;
-import com.example.trending.ViewModel.TrendingViewModelFactory;
+import com.example.trending.viewmodel.TrendingViewModel;
+import com.example.trending.viewmodel.TrendingViewModelFactory;
 import com.example.trending.databinding.ActivityMainBinding;
 import com.example.trending.model.TrendBody;
 import com.example.trending.presenter.TrendingPresenter;

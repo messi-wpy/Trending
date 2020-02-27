@@ -5,9 +5,11 @@ import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 import io.reactivex.Scheduler;
 
-public class App  extends Application {
+public class App  extends DaggerApplication {
 
     private  static Context mContext;
     @Override
@@ -16,6 +18,12 @@ public class App  extends Application {
         mContext=getApplicationContext();
         Fresco.initialize(this);
     }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return
+    }
+
     public static Context getContext(){
         return mContext;
     }

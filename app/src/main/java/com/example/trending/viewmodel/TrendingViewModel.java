@@ -1,4 +1,4 @@
-package com.example.trending.ViewModel;
+package com.example.trending.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

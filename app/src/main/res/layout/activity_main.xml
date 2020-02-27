@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.trending.ViewModel.TrendingViewModel" />
+            type="com.example.trending.viewmodel.TrendingViewModel" />
 
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,4 @@
-package com.example.trending.ViewModel;
+package com.example.trending.viewmodel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
